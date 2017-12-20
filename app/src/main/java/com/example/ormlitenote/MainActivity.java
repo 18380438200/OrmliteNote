@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 holder.setText(R.id.tv_title,noteBean.getTitle());
                 holder.setText(R.id.tv_content,noteBean.getContent());
                 holder.setText(R.id.tv_date,noteBean.getDate());
+                holder.setText(R.id.tv_num,"字数 " + noteBean.getTextNum());
             }
         };
         recyclerView.setAdapter(adapter);

@@ -9,7 +9,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import java.util.Date;
 
 public class InputActivity extends AppCompatActivity {

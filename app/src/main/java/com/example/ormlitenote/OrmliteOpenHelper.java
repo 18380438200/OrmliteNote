@@ -15,7 +15,7 @@ import java.util.Map;
  */
 
 public class OrmliteOpenHelper extends OrmLiteSqliteOpenHelper{
-    private static final String TABLE_NAME = "sqlite-test.db";
+    private static final String TABLE_NAME = "sqlite.db";
 
     private Map<String, Dao> daos = new HashMap();
 
@@ -49,6 +49,7 @@ public class OrmliteOpenHelper extends OrmLiteSqliteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase database, ConnectionSource connectionSource) {
         try {
+            //根据实体类创建对应表
             TableUtils.createTable(connectionSource,NoteBean.class);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -58,12 +59,19 @@ public class OrmliteOpenHelper extends OrmLiteSqliteOpenHelper{
     @Override
     public void onUpgrade(SQLiteDatabase database, ConnectionSource connectionSource, int oldVersion, int newVersion) {
         try {
+            //根据实体类删除对应表
             TableUtils.dropTable(connectionSource,NoteBean.class,true);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * 获取类对应操作Dao类
+     * @param clazz
+     * @return
+     * @throws SQLException
+     */
     public synchronized Dao getDao(Class clazz) throws SQLException {
         Dao dao = null;
         String className = clazz.getSimpleName();
